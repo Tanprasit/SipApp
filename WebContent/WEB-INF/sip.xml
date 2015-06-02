@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sip-app>
+
+	<app-name>SipApp</app-name>
+	<display-name>SipApp</display-name>
+	<description>SipApp</description>
+
+	<main-servlet>
+		LocationServlet
+	</main-servlet>
+
+	<servlet>
+		<servlet-name>LocationServlet</servlet-name>
+		<display-name>LocationServlet</display-name>
+		<description>LocationServlet</description>
+		<servlet-class>
+			org.example.servlet.sip.LocationServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RegistryServlet</servlet-name>
+		<display-name>RegistryServlet</display-name>
+		<description>RegistryServlet</description>
+		<servlet-class>
+			org.example.servlet.sip.RegistryServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Servlet Mapping -->
+	<servlet-selection>
+		<servlet-mapping>
+			<servlet-name>LocationServlet</servlet-name>
+			<pattern>
+				<equal>
+					<var>request.method</var>
+					<value>INVITE</value>
+				</equal>
+			</pattern>
+		</servlet-mapping>
+
+		<servlet-mapping>
+			<servlet-name>RegistryServlet</servlet-name>
+			<pattern>
+				<equal>
+					<var>request.method</var>
+					<value>REGISTER</value>
+				</equal>
+			</pattern>
+		</servlet-mapping>
+
+	</servlet-selection>
+
+</sip-app>
